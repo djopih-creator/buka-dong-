@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>I Love You</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        background: #ffd6e8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Balon hati background */
+    .heart {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: #3ddcda;
+        transform: rotate(45deg);
+        animation: float 8s infinite ease-in-out;
+        opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: #3ddcda;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -20px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: -20px;
+        top: 0;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) rotate(45deg); }
+        50% { transform: translateY(-40px) rotate(45deg); }
+        100% { transform: translateY(0) rotate(45deg); }
+    }
+
+    /* Box input */
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        z-index: 2;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        position: relative;
+    }
+
+    input {
+        padding: 10px;
+        width: 80%;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 12px;
+        background: #ff5fa2;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Kotak cinta */
+    .love-box {
+        display: none;
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #ff2e88;
+        position: relative;
+    }
+
+    /* Balon kecil di luar kotak */
+    .bubble {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #ff7eb9;
+        border-radius: 50%;
+    }
+</style>
+</head>
+<body>
+
+<!-- Balon hati background -->
+<div class="heart" style="top:10%; left:15%;"></div>
+<div class="heart" style="top:70%; left:20%; animation-delay:2s;"></div>
+<div class="heart" style="top:30%; left:75%; animation-delay:4s;"></div>
+<div class="heart" style="top:60%; left:80%; animation-delay:1s;"></div>
+
+<!-- Input nama -->
+<div class="container" id="inputBox">
+    <h2>Masukkan Nama Kamu 💕</h2>
+    <input type="text" id="nameInput" placeholder="Nama kamu...">
+    <br>
+    <button onclick="showLove()">Masuk</button>
+</div>
+
+<!-- Kotak I Love You -->
+<div class="love-box" id="loveBox">
+    <span id="loveText"></span>
+
+    <!-- Balon kecil -->
+    <div class="bubble" style="top:-10px; left:20px;"></div>
+    <div class="bubble" style="top:20px; right:-10px;"></div>
+    <div class="bubble" style="bottom:-10px; left:40px;"></div>
+    <div class="bubble" style="bottom:20px; right:30px;"></div>
+</div>
+
+<script>
+function showLove() {
+    const name = document.getElementById("nameInput").value;
+    if (name.trim() === "") {
+        alert("Masukkan nama dulu ya ❤️");
+        return;
+    }
+    document.getElementById("inputBox").style.display = "none";
+    document.getElementById("loveBox").style.display = "block";
+    document.getElementById("loveText").innerHTML = `I love you, ${name} ❤️`;
+}
+</script>
+
+</body>
+</html>
